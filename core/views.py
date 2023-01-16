@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import exceptions
+from core.authentication import create_access_token
 from core.models import User
 from .serializers import UserSerializer
 
@@ -24,13 +25,13 @@ class LoginAPIView(APIView):
             raise exceptions.AuthenticationFailed('Invalid Credentials')
         if not user.check_password(password):
             raise exceptions.AuthenticationFailed('Invalid Credentials')
-        # access_token = create_access_token(user.id)
-        # refresh_token = create_access_token(user.id)
-        # response = Response()
-        # response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
-        # response.data= {
-        #     'token': access_token
-        # }
-        # return response
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+        access_token = create_access_token(user.id)
+        refresh_token = create_access_token(user.id)
+        response = Response()
+        response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
+        response.data= {
+            'token': access_token
+        }
+        return response
+        # serializer = UserSerializer(user)
+        # return Response(serializer.data)
