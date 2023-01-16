@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import exceptions
-from core.authentication import create_access_token, decode_access_token
+from core.authentication import create_access_token, JWTAuthentication
 from core.models import User
 from .serializers import UserSerializer
 from rest_framework.authentication import get_authorization_header
@@ -18,16 +18,9 @@ class RegisterAPIView(APIView):
         return Response(serializer.data)
 
 class UserAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
     def get(self, request):
-        auth = get_authorization_header(request).split()
-        if auth and len(auth) == 2:
-            token = auth[1].decode('UTF-8')
-            id = decode_access_token(token)
-            user = User.objects.get(pk=id)
-            if user:
-                serializer = UserSerializer(user)
-                return Response(serializer.data)
-        raise exceptions.AuthenticationFailed('unauthenticated')
+        return Response(UserSerializer(request.user).data)
     
 class LoginAPIView(APIView):
     def post(self, request):
