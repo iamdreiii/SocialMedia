@@ -7,6 +7,14 @@ from core.models import User
 from .serializers import UserSerializer
 from rest_framework.authentication import get_authorization_header
 
+
+class IndexAPIView(APIView):
+    def get(self, request, format=None):
+        content = {
+            "wmsg" : "Welcome to Python Django"
+        }
+        return Response(content)
+    
 class RegisterAPIView(APIView):
     def post(self, request):
         data = request.data
