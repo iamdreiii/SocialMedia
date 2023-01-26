@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TestComponent } from './components/test/test.component';
+import { FriendlistComponent } from './pages/friendlist/friendlist.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TestComponent } from './components/test/test.component';
     HomeComponent,
     NavComponent,
     ProfileComponent,
-    TestComponent
+    TestComponent,
+    FriendlistComponent
   ],
   imports: [
     BrowserModule,

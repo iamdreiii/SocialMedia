@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,12 +19,15 @@ export class LoginComponent  implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      email: '', 
-      password: ''
+    this.form = this.formBuilder.group(
+    {
+      email : '', 
+      password : ''
     });
   }
+  
   submit(): void {
+    console.log(this.form.getRawValue());
     this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), { 
       withCredentials: true
     }).subscribe(() => this.router.navigate(['/']));

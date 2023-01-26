@@ -12,7 +12,7 @@ export class AppComponent {
 
   }
   ngOnInit(): void {
-    this.showMessage();
+     this.showMessage();
   }
   showMessage() {
     this.pService.getMessage().subscribe(data => {
