@@ -41,20 +41,15 @@ export class LoginComponent {
         this.authenticated = true;
         this.user = true;
         localStorage.setItem('token', response.token);
-        Emitters.authEmitter.emit
         console.log("Login successful");
         this.router.navigate(['/home']);
+        Emitters.authEmitter.emit(true)
       },
       error => {
         this.router.navigate(['/login']);
+        Emitters.authEmitter.emit(false)
       }
       );
     }
   }
-  // login(): void {
-  //   console.log(this.form.getRawValue());
-  //   this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), { 
-  //     withCredentials: true
-  //   }).subscribe((res: any) => {this.router.navigate(['/']),console.log(res)});
-  // }
 }
