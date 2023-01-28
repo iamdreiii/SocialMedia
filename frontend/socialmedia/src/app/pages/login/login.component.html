@@ -1,23 +1,25 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div class="form-signin w-100 m-auto">
-    <form [formGroup]="form" (submit)="submit()">
-      <!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-      <h1 class="h3 mb-3 fw-normal">Login</h1>
-  
-      <div class="form-floating">
-        <input type="email" class="form-control" formControlName="email" id="email"placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" formControlName="password" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
-  
-      <div class="checkbox mb-3">
-        <!-- <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label> -->
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2>Login Form</h2>
+    <!-- Icon -->
+
+
+    <!-- Login Form -->
+    <form [formGroup]="form" (submit)="login()">
+      <input type="email" id="login" class="fadeIn second" formControlName="email" name="login" placeholder="email">
+      <input type="password" id="password" class="fadeIn third" formControlName="password" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
+</div>

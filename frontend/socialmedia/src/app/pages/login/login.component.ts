@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 // Authservice and public service is same
-export class LoginComponent  implements OnInit {
+export class LoginComponent {
 
   form!: FormGroup;
   constructor(
@@ -21,15 +21,15 @@ export class LoginComponent  implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
     {
-      email : '', 
-      password : ''
+      email : "", 
+      password : ""
     });
   }
   
-  submit(): void {
+  login(): void {
     console.log(this.form.getRawValue());
     this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), { 
       withCredentials: true
-    }).subscribe(() => this.router.navigate(['/']));
+    }).subscribe(() => {this.router.navigate(['/'])});
   }
 }

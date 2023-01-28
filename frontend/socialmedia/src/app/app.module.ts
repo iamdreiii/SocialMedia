@@ -29,6 +29,7 @@ import { FriendlistComponent } from './pages/friendlist/friendlist.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

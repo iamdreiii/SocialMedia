@@ -1,35 +1,28 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div class="form-signin w-100 m-auto">
-    <form [formGroup]="form" (submit)="submit()">
-      <!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-      <h1 class="h3 mb-3 fw-normal">Register</h1>
-  
-      <div class="form-floating">
-        <input type="text" class="form-control" formControlName="first_name" placeholder="First Name">
-        <label >First Name</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" class="form-control" formControlName="last_name" placeholder="Last Name">
-        <label >Last Name</label>
-      </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
-        <label>Email address</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" formControlName="password" placeholder="Password">
-        <label>Password</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" formControlName="password_confirm" placeholder="Password Confirm">
-        <label>Password Confirm</label>
-      </div>
-  
-      <div class="checkbox mb-3">
-        <!-- <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label> -->
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Signup</button>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2>Register Form</h2>
+    <!-- Icon -->
+
+
+    <!-- Login Form -->
+    <form [formGroup]="form" (submit)="register()">
+      <input type="text" class="fadeIn first" formControlName="first_name"  placeholder="first_name">
+      <input type="text" class="fadeIn second" formControlName="last_name" placeholder="last_name">
+      <input type="email" class="fadeIn third" formControlName="email"  placeholder="email">
+      <input type="password" class="fadeIn fourth" formControlName="password" placeholder="password">
+      <input type="password"  class="fadeIn fifth" formControlName="password_confirm" placeholder="password_confirm">
+      <input type="submit" class="fadeIn sixth" value="Register">
     </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
+</div>

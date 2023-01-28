@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         password_confirm: ''
       });
   }
-  submit(): void {
+  register(): void {
     // console.log(this.form.getRawValue());
     this.http.post('http://localhost:8000/api/register', this.form.getRawValue())
     .subscribe(res => {
