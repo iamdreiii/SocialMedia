@@ -7,8 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { TestComponent } from './components/test/test.component';
 import { FriendlistComponent } from './pages/friendlist/friendlist.component';
 const routes: Routes = [
-  {path:'', component:LoginComponent},
-  {path:'home', component:HomeComponent},
+  {path:'', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'profile', component:ProfileComponent},
