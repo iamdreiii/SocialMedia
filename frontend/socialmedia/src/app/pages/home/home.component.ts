@@ -29,12 +29,12 @@ export class HomeComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get(url, { headers }).subscribe(response => {
-      // console.log(response);
+      Emitters.authEmitter.emit(true);
       this.user = response;
     },
     error => {
-      // console.log(error);
       this.mes = 'Log in first';
+      Emitters.authEmitter.emit(false);
     });
   }
 }

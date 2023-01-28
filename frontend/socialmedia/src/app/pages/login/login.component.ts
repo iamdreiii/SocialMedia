@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Emitters } from 'src/app/emitters/emitters';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 // Authservice and public service is same
 export class LoginComponent {
   authenticated = false;
+  user: any;
   // form!: FormGroup;
   loginForm!: FormGroup;
   constructor(
@@ -36,14 +38,15 @@ export class LoginComponent {
       const jsonData = this.loginForm.value;
       const url = 'http://localhost:8000/api/login';
       this.http.post(url, jsonData,{withCredentials: true}).subscribe((response:any) => {
-        this.router.navigate(['/']);
         this.authenticated = true;
-        //console.log(response);
+        this.user = true;
         localStorage.setItem('token', response.token);
+        Emitters.authEmitter.emit
+        console.log("Login successful");
+        this.router.navigate(['/home']);
       },
       error => {
         this.router.navigate(['/login']);
-        //console.log(error);
       }
       );
     }
