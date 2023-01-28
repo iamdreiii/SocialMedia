@@ -24,7 +24,7 @@ export class NavComponent  implements OnInit{
         this.authenticated = auth;
       }
      );
-     this.getuser();
+     //this.getuser();
    }
    
   refresh() {
