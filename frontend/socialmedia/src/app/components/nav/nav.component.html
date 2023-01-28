@@ -6,15 +6,15 @@
   
 
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">i-Chizmis</a>
+    <a class="navbar-brand" style="color:white;" href="/home">chikagram</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" style="color: green;"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item active" *ngIf="authenticated">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" *ngIf="authenticated">
           <a class="nav-link" href="/profile">Profile</a>
@@ -22,9 +22,9 @@
         <li class="nav-item" *ngIf="authenticated">
           <a class="nav-link" href="/friends">Friends</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link pointer" style="cursor: pointer;" (click)="refresh()">Refresh</a>
-        </li>
+        </li> -->
       </ul>
       <div class="text-end"  *ngIf="!authenticated">
         <a routerLink="/login" class="btn btn-outline-light me-2">Login</a>

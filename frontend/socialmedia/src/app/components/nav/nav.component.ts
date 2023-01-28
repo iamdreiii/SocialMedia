@@ -28,10 +28,9 @@ export class NavComponent  implements OnInit{
    }
    
   refresh() {
-    const cookieValue = this.cookieService.get('refresh_token');
-    console.log(cookieValue);
-    this.http.post('http://localhost:4200/api/refresh', {withCredentials: true})
-    .subscribe(data => console.log(data));
+    this.http.post('http://localhost:8000/api/refresh', {}).subscribe(data => {
+      console.log(data);
+    });
     
   }
   getuser(): void {
@@ -39,11 +38,9 @@ export class NavComponent  implements OnInit{
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get(url, { headers }).subscribe(response => {
-      // console.log(response);
       this.user = response;
     },
     error => {
-      // console.log(error);
       this.user = 'Log in first';
     });
   }
@@ -58,6 +55,7 @@ export class NavComponent  implements OnInit{
           this.cookieService.delete('refresh_token');
           this.cookieService.deleteAll();
           console.log("Logout successful");
+          Emitters.authEmitter.emit(false);
           this.router.navigate(['/login']);
         },
         error => {
