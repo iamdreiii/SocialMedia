@@ -20,18 +20,6 @@ export class AppComponent {
   }
   ngOnInit(): void {
      //this.showMessage();
-     console.log(this.showtoken());
-  }
-  showtoken() {
-    this.http.post('http://localhost:8000/api/refresh', Request).subscribe(
-      data => {
-        console.log(data);
-      }
-      // ,
-      // err => {
-      //   console.log(err);
-      // }
-    );
   }
   showMessage() {
     this.pService.getMessage().subscribe(data => {

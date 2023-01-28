@@ -10,10 +10,10 @@
 
 
     <!-- Login Form -->
-    <form [formGroup]="form" (submit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <input type="email" id="login" class="fadeIn second" formControlName="email" name="login" placeholder="email">
       <input type="password" id="password" class="fadeIn third" formControlName="password" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" class="fadeIn fourth" [disabled]="!loginForm.valid" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->

@@ -5,7 +5,6 @@ from rest_framework import exceptions
 from core.authentication import create_access_token, JWTAuthentication, create_refresh_token, decode_refresh_token
 from core.models import User
 from .serializers import UserSerializer
-from rest_framework.authentication import get_authorization_header
 
 
 class IndexAPIView(APIView):
@@ -27,7 +26,7 @@ class RegisterAPIView(APIView):
 
 class UserAPIView(APIView):
     authentication_classes = [JWTAuthentication]
-    def get(self, request):
+    def get(self, request, format=None):
         return Response(UserSerializer(request.user).data)
     
 class LoginAPIView(APIView):
