@@ -44,9 +44,8 @@ export class HomeComponent {
       this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
       .subscribe(res => {
         console.log(res);
-        // $('#postForm').modal('hide');
         this.router.navigate(['/home']);
-        console.log('POSTED');
+        //console.log('POSTED');
       });
      // console.log('POSTED');
   }

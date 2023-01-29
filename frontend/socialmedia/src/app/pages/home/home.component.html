@@ -112,7 +112,7 @@
                 <form id="postForm" [formGroup]="postForm" (ngSubmit)="post()">
                   <textarea name="content" placeholder="What's on your mind?" formControlName="content" spellcheck="false" required></textarea>
                   <input type="hidden" formControlName="email" [(ngModel)]="user.email">
-                  <button type="submit" onclick="myFunction()" [disabled]="!postForm.valid">Post</button>
+                  <button type="submit" [disabled]="!postForm.valid">Post</button>
                 </form>
               </section>
     </div>
