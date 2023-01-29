@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import User
+from .models import User, Post
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -15,3 +15,22 @@ class UserSerializer(ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+    
+class PostSerializer(ModelSerializer):
+    class Meta:
+        model =  Post
+        fields = ['email', 'content']
+        extra_kwrgs = {
+            'email' : {
+                'required' : True
+            },
+            'content' : {
+                'required' : True
+            }
+        }
+    # def create(self, validate_data):
+    #     email = validate_data.pop('email', None)
+    #     instance = self.Meta.model(**validate_data)
+    #     if email is not None:
+    #         instance.save()
+    #         return instance

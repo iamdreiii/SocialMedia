@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import RegisterAPIView, LoginAPIView, UserAPIView, RefreshAPIView, LogoutAPIView, IndexAPIView
-
+from .views import RegisterAPIView, LoginAPIView, UserAPIView, RefreshAPIView, LogoutAPIView, IndexAPIView,PostAPIView
 urlpatterns = [
     path('', IndexAPIView.as_view()),
     path('register', RegisterAPIView.as_view()),
@@ -8,4 +7,5 @@ urlpatterns = [
     path('user', UserAPIView.as_view()),
     path('refresh', RefreshAPIView.as_view()),
     path('logout', LogoutAPIView.as_view()),
+    path('post', PostAPIView.as_view()),
 ]

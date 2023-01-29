@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
 import {Emitters} from '../../emitters/emitters';
-import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControlName, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -32,8 +31,9 @@ export class HomeComponent {
   ngOnInit(): void {
     this.getuser();
     this.postForm = this.formBuilder.group({
-      chika: ''
-    });
+      email : '',
+      content: '' 
+    });   
     Emitters.authEmitter.subscribe(
       (auth: boolean) =>{
         this.authenticated = auth;
@@ -41,12 +41,14 @@ export class HomeComponent {
      );
   }
   post(): void {
-    console.log(this.postForm.getRawValue());
-    this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
-    .subscribe(res => {
-      //console.log(res);
-      this.router.navigate(['/home']);
-    });
+      // this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
+      // .subscribe(res => {
+      //   console.log(res);
+      //   // $('#postForm').modal('hide');
+      //   this.router.navigate(['/home']);
+      // });
+
+      console.log('POSTED');
   }
   getuser(): void {
     const url = 'http://localhost:8000/api/user';

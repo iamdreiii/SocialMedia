@@ -1,10 +1,14 @@
+from urllib import request
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import exceptions
 from core.authentication import create_access_token, JWTAuthentication, create_refresh_token, decode_refresh_token
-from core.models import User
-from .serializers import UserSerializer
+from core.models import User, Post
+from .serializers import UserSerializer, PostSerializer
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 class IndexAPIView(APIView):
@@ -13,7 +17,21 @@ class IndexAPIView(APIView):
             "wmsg" : "Welcome to Python Django"
         }
         return Response(content)
-    
+
+class PostAPIView(APIView):
+    def post(self, request):
+        data = request.data
+        email = request.data['email']
+        content = request.data['content']
+        if email == '':
+            raise exceptions.APIException('email empty')
+        elif content == '':
+            raise exceptions.APIException('content empty')
+        serializer = PostSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+        
 class RegisterAPIView(APIView):
     def post(self, request):
         data = request.data
@@ -66,3 +84,4 @@ class LogoutAPIView(APIView):
             'message': 'success'
         }
         return response
+

@@ -92,13 +92,13 @@
 </div> -->
 <!-- MODAL POST -->
 <!-- Modal -->
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
               <section class="post">
                 <header>Create chizmis</header>
-                <form [formGroup]="postForm">
-                  <div class="content">
+                <div class="content">
                     <img src="../assets/uploads/1.png" alt="logo">
                     <div class="details">
                       <p>{{user.email}}</p>
@@ -109,8 +109,10 @@
                       </div>
                     </div>
                   </div>
-                  <textarea placeholder="What's on your mind?" formControlName="chika" spellcheck="false" required></textarea>
-                  <button type="submit" [disabled]="!postForm.valid" (click)="post()">Post</button>
+                <form id="postForm" [formGroup]="postForm" (ngSubmit)="post()">
+                  <textarea name="content" placeholder="What's on your mind?" formControlName="content" spellcheck="false" required></textarea>
+                  <input type="hidden" formControlName="email" [(ngModel)]="user.email">
+                  <button type="submit" onclick="myFunction()" [disabled]="!postForm.valid">Post</button>
                 </form>
               </section>
     </div>

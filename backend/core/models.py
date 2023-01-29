@@ -11,3 +11,11 @@ class User(AbstractUser):
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    
+class Post(models.Model):
+    id = models.AutoField(primary_key=True)
+    email = models.EmailField()
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    REQUIRED_FIELDS = ['email', 'content']
