@@ -1,5 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 <app-nav></app-nav>
-<div class="fb-cards-designs" *ngIf="user">
+<div class="fb-cards-designs" *ngIf="authenticated">
+    <div class="fb-clone-card">
+        <!-- Button trigger modal -->
+            <div class="input-group">
+              <input class="form-control" type="text" data-toggle="modal" data-target="#myModal" placeholder="Make a chizmis...">
+              <span class="input-group-btn">
+              </span>
+            </div>
+    </div>
     <div class="fb-clone-card">
             <div class="fb-card-main-content">
                 <div class="fb-card-header">
@@ -7,8 +16,8 @@
                         <div class="user-thumb">
                             <img src="https://randomuser.me/api/portraits/women/46.jpg" class="img-responsive" />
                         </div>
-                        <div class="user-information" *ngIf="user">
-                            <p>{{ user.email }}</p>
+                        <div class="user-information">
+                            <p>{{user.email}}</p>
                             <small>1 hr</small>
                         </div>
                     </div>
@@ -81,3 +90,29 @@
             </div>
     </div>
 </div> -->
+<!-- MODAL POST -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+              <section class="post">
+                <header>Create chizmis</header>
+                <form [formGroup]="postForm">
+                  <div class="content">
+                    <img src="../assets/uploads/1.png" alt="logo">
+                    <div class="details">
+                      <p>{{user.email}}</p>
+                      <div class="privacy">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Friends</span>
+                        <!-- <i class="fas fa-caret-down"></i> -->
+                      </div>
+                    </div>
+                  </div>
+                  <textarea placeholder="What's on your mind?" formControlName="chika" spellcheck="false" required></textarea>
+                  <button type="submit" [disabled]="!postForm.valid" (click)="post()">Post</button>
+                </form>
+              </section>
+    </div>
+</div>
+</div>

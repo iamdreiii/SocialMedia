@@ -3,6 +3,11 @@ import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
 import {Emitters} from '../../emitters/emitters';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,25 +17,44 @@ export class HomeComponent {
   
   api_url =  "http://localhost:8000/";
   authenticated = false;
-  user :  any;
+  user: any;
   mes = "";
-  email!: string;
+  postForm!: FormGroup;
   constructor(
     private http: HttpClient,
     private cookieService: CookieService, 
-  ) {}
+    private formBuilder: FormBuilder,
+    private router : Router
+  ) {
+    //this.getuser();
+  }
 
   ngOnInit(): void {
     this.getuser();
+    this.postForm = this.formBuilder.group({
+      chika: ''
+    });
+    Emitters.authEmitter.subscribe(
+      (auth: boolean) =>{
+        this.authenticated = auth;
+      }
+     );
   }
-  
+  post(): void {
+    console.log(this.postForm.getRawValue());
+    this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
+    .subscribe(res => {
+      //console.log(res);
+      this.router.navigate(['/home']);
+    });
+  }
   getuser(): void {
     const url = 'http://localhost:8000/api/user';
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get(url, { headers }).subscribe(response => {
+    this.http.get(url, { headers }).subscribe(res => {
       Emitters.authEmitter.emit(true);
-      this.user = response;
+      this.user = res;
     },
     error => {
       this.mes = 'Log in first';
