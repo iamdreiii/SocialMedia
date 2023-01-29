@@ -1,19 +1,17 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
 import {Emitters} from '../../emitters/emitters';
-import { CookieService } from 'ngx-cookie-service';
-import { FormGroup, FormBuilder, FormControlName, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css']
 })
-export class HomeComponent {
-  
+export class PostComponent {
   api_url =  "http://localhost:8000/";
   authenticated = false;
   user: any;
@@ -21,7 +19,6 @@ export class HomeComponent {
   postForm!: FormGroup;
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService, 
     private formBuilder: FormBuilder,
     private router : Router
     
@@ -45,10 +42,9 @@ export class HomeComponent {
       this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
       .subscribe(res => {
         // console.log(res);
-        //this.postForm.reset();
-        this.router.navigate(['/home']);
-       
-        swal.fire('Success','Your chika is posted!','success')
+        this.postForm.reset();
+        swal.fire('Success','Your chika is posted!','success').then(function(){
+          location.reload();});
       },
       (err) => {
         swal.fire('Failed','Failed to post!','error')

@@ -11,6 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TestComponent } from './components/test/test.component';
 import { FriendlistComponent } from './pages/friendlist/friendlist.component';
+import { PostComponent } from './pages/post/post.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FriendlistComponent } from './pages/friendlist/friendlist.component';
     NavComponent,
     ProfileComponent,
     TestComponent,
-    FriendlistComponent
+    FriendlistComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

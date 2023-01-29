@@ -6,6 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TestComponent } from './components/test/test.component';
 import { FriendlistComponent } from './pages/friendlist/friendlist.component';
+
 const routes: Routes = [
   {path:'', component:LoginComponent},
   {path:'home', component:HomeComponent},

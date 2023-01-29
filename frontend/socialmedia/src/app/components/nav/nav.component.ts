@@ -3,6 +3,8 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Emitters } from 'src/app/emitters/emitters';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -57,6 +59,7 @@ export class NavComponent  implements OnInit{
           console.log("Logout successful");
           Emitters.authEmitter.emit(false);
           this.router.navigate(['/login']);
+          swal.fire('Success','Logout!','success')
         },
         error => {
           console.log("Error while logging out: ", error);

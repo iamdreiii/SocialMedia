@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Emitters } from 'src/app/emitters/emitters';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +45,7 @@ export class LoginComponent {
         console.log("Login successful");
         this.router.navigate(['/home']);
         Emitters.authEmitter.emit(true)
+        swal.fire('Success','Logged in!','success')
       },
       error => {
         this.router.navigate(['/login']);

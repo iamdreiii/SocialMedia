@@ -1,14 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 <app-nav></app-nav>
 <div class="fb-cards-designs" *ngIf="authenticated">
-    <div class="fb-clone-card">
-        <!-- Button trigger modal -->
-            <div class="input-group">
-              <input class="form-control" type="text" data-toggle="modal" data-target="#myModal" placeholder="Make a chizmis...">
-              <span class="input-group-btn">
-              </span>
-            </div>
-    </div>
+    <app-post></app-post>
     <div class="fb-clone-card">
             <div class="fb-card-main-content">
                 <div class="fb-card-header">
@@ -77,44 +70,3 @@
     <div class="created-by" style="text-align:center;margin-bottom:16px;">
 </div>
 
-<!-- <div class="fb-cards-designs" *ngIf="!authenticated">
-    <div class="fb-clone-card">
-            <div class="fb-card-main-content">
-                <div class="fb-card-header">
-                    <div class="user-post-info">
-                        <div class="user-information">
-                            <h4>{{mes}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div> -->
-<!-- MODAL POST -->
-<!-- Modal -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-              <section class="post">
-                <header>Create chizmis</header>
-                <div class="content">
-                    <img src="../assets/uploads/1.png" alt="logo">
-                    <div class="details">
-                      <p>{{user.email}}</p>
-                      <div class="privacy">
-                        <i class="fas fa-user-friends"></i>
-                        <span>Friends</span>
-                        <!-- <i class="fas fa-caret-down"></i> -->
-                      </div>
-                    </div>
-                  </div>
-                <form id="postForm" [formGroup]="postForm" (ngSubmit)="post()">
-                  <textarea name="content" placeholder="What's on your mind?" formControlName="content" spellcheck="false" required></textarea>
-                  <input type="hidden" formControlName="email" [(ngModel)]="user.email">
-                  <button type="submit" [disabled]="!postForm.valid">Post</button>
-                </form>
-              </section>
-    </div>
-</div>
-</div>
