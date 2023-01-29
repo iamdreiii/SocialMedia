@@ -41,14 +41,14 @@ export class HomeComponent {
      );
   }
   post(): void {
-      // this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
-      // .subscribe(res => {
-      //   console.log(res);
-      //   // $('#postForm').modal('hide');
-      //   this.router.navigate(['/home']);
-      // });
-
-      console.log('POSTED');
+      this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
+      .subscribe(res => {
+        console.log(res);
+        // $('#postForm').modal('hide');
+        this.router.navigate(['/home']);
+        console.log('POSTED');
+      });
+     // console.log('POSTED');
   }
   getuser(): void {
     const url = 'http://localhost:8000/api/user';
