@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import exceptions
 from core.authentication import create_access_token, JWTAuthentication, create_refresh_token, decode_refresh_token
 from core.models import User, Post
-from .serializers import UserSerializer, PostSerializer
+from .serializers import UserSerializer, PostSerializer, UserPostSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -18,6 +18,19 @@ class IndexAPIView(APIView):
         }
         return Response(content)
 
+class UserPostAPIView(APIView):
+    def get(self, request):
+        if request.method == 'GET':
+            post = Post.objects.all()
+        
+            title = request.GET.get('title', None)
+            if title is not None:
+                tutorials = tutorials.filter(title__icontains=title)
+            
+            post = UserPostSerializer(post, many=True)
+            return JsonResponse(post.data, safe=False)
+            # 'safe=False' for objects serialization
+    
 class PostAPIView(APIView):
     def post(self, request):
         data = request.data
@@ -31,6 +44,7 @@ class PostAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+    
         
 class RegisterAPIView(APIView):
     def post(self, request):

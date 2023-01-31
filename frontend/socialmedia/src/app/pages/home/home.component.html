@@ -2,7 +2,7 @@
 <app-nav></app-nav>
 <div class="fb-cards-designs" *ngIf="authenticated">
     <app-post></app-post>
-    <div class="fb-clone-card">
+    <div class="fb-clone-card" *ngFor="let posts of posts">
             <div class="fb-card-main-content">
                 <div class="fb-card-header">
                     <div class="user-post-info">
@@ -10,7 +10,7 @@
                             <img src="https://randomuser.me/api/portraits/women/46.jpg" class="img-responsive" />
                         </div>
                         <div class="user-information">
-                            <p>{{user.email}}</p>
+                            <p>{{posts.email}}</p>
                             <small>1 hr</small>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
         
     </div>
     

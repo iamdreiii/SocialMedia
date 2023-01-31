@@ -17,6 +17,7 @@ export class HomeComponent {
   api_url =  "http://localhost:8000/";
   authenticated = false;
   user: any;
+  posts: any;
   mes = "";
   postForm!: FormGroup;
   constructor(
@@ -30,7 +31,7 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.getuser();
+    
     this.postForm = this.formBuilder.group({
       email : '',
       content: '' 
@@ -40,6 +41,8 @@ export class HomeComponent {
         this.authenticated = auth;
       }
      );
+    this.getuser();
+    this.getuserPost();
   }
   post(): void {
       this.http.post('http://localhost:8000/api/post', this.postForm.getRawValue())
@@ -69,4 +72,13 @@ export class HomeComponent {
       Emitters.authEmitter.emit(false);
     });
   }
+  getuserPost(): void {
+    this.http.get('http://localhost:8000/api/userpost').subscribe(res => {
+    this.posts = res;
+    },
+    error => {
+      
+    });
+    }
+  
 }

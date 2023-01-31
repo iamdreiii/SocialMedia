@@ -34,3 +34,7 @@ class PostSerializer(ModelSerializer):
     #     if email is not None:
     #         instance.save()
     #         return instance
+class UserPostSerializer(ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('id', 'email', 'content', 'created_at', 'updated_at')
