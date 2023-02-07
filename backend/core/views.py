@@ -5,11 +5,11 @@ from rest_framework.response import Response
 from rest_framework import exceptions
 from core.authentication import create_access_token, JWTAuthentication, create_refresh_token, decode_refresh_token
 from core.models import User, Post
-from .serializers import UserSerializer, PostSerializer, UserPostSerializer
+from .serializers import UserSerializer, PostSerializer, UserPostSerializer, DeletePostSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.shortcuts import get_object_or_404
 
 class IndexAPIView(APIView):
     def get(self, request, format=None):
@@ -21,7 +21,7 @@ class IndexAPIView(APIView):
 class UserPostAPIView(APIView):
     def get(self, request):
         if request.method == 'GET':
-            post = Post.objects.all()
+            post = Post.objects.all().order_by('-id').values()
         
             title = request.GET.get('title', None)
             if title is not None:
@@ -45,7 +45,12 @@ class PostAPIView(APIView):
         serializer.save()
         return Response(serializer.data)
     
-        
+class DeletePostAPIView(APIView):
+    def delete(self, request, id):
+        post = get_object_or_404(Post, id=id)
+        post.delete()
+        return JsonResponse({'message': 'Post deleted successfully'})
+            
 class RegisterAPIView(APIView):
     def post(self, request):
         data = request.data

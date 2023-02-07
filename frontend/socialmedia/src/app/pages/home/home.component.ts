@@ -20,6 +20,7 @@ export class HomeComponent {
   posts: any;
   mes = "";
   postForm!: FormGroup;
+  delform!: FormGroup;
   constructor(
     private http: HttpClient,
     private cookieService: CookieService, 
@@ -31,10 +32,12 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    
     this.postForm = this.formBuilder.group({
       email : '',
       content: '' 
+    });  
+    this.delform = this.formBuilder.group({
+      id : "" 
     });   
     Emitters.authEmitter.subscribe(
       (auth: boolean) =>{
@@ -59,6 +62,23 @@ export class HomeComponent {
       );
      // console.log('POSTED');
   }
+  deletepost(id: number): void {
+    console.log(id);
+    this.http.delete('http://localhost:8000/api/deletepost/'+ id)
+    .subscribe(res => {
+      
+      //this.postForm.reset();
+      this.router.navigate(['/home']);
+     
+      swal.fire('Success','Your chika is deleted!','success')
+      location.reload();
+    },
+    (err) => {
+      swal.fire('Failed','Failed to delete!','error')
+    }
+    );
+   // console.log('POSTED');
+}
   getuser(): void {
     const url = 'http://localhost:8000/api/user';
     const token = localStorage.getItem('token');

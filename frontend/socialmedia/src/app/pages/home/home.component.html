@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
 <app-nav></app-nav>
 <div class="fb-cards-designs" *ngIf="authenticated">
     <app-post></app-post>
@@ -7,20 +8,28 @@
                 <div class="fb-card-header">
                     <div class="user-post-info">
                         <div class="user-thumb">
-                            <img src="https://randomuser.me/api/portraits/women/46.jpg" class="img-responsive" />
+                            <img src="../assets/uploads/1.png" class="img-responsive" />
                         </div>
                         <div class="user-information">
                             <p>{{posts.email}}</p>
-                            <small>1 hr</small>
+                            <small>{{posts.created_at}}</small>
                         </div>
                     </div>
-                    <div class="post-action">
-                        <i class="fa fa-ellipsis-h"></i>
+                    <div class="post-action" *ngIf="posts.email === user.email">
+                        <div class="dropdown">
+                            <a type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-ellipsis-h"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item" (click)="deletepost(posts.id)">Delete</button>
+                            </div>
+                          </div>
                     </div>
+                    
                 </div>
 
                 <div class="fb-card-body simple-text-card simple-image-card">
-                    <p>Sample Chika</p>
+                    <p>{{posts.content}}</p>
                     <!-- <div class="images-container">
                         <img src="https://raw.githubusercontent.com/karthikricssion/facebook-card-design/master/assets/images/sample_joker_poster.jpg" class="img-responsive" />
                     </div> -->
@@ -31,10 +40,10 @@
             <div class="fb-card-like-comment-holder">
                 <div class="fb-card-like-comment">
                     <div class="likes-emoji-holder">
-                        <span>14 Likes</span>
+                        <span>Likes</span>
                     </div>
                     <div class="like-comment-holder">
-                        <span>10 Commnets</span>
+                        <span>Comments</span>
                     </div>
                 </div>
             </div>
@@ -42,21 +51,21 @@
             <div class="fb-card-actions-holder">
                 <div class="fb-card-actions">
                     <div class="fb-btn-holder">
-                        <a href="#" onclick="alert('Like')"><i class="fa fa-thumbs-up"></i> Like</a>
+                        <a  onclick="alert('Like')"><i class="fa fa-thumbs-up"></i> Like</a>
                     </div>
                     <div class="fb-btn-holder">
-                        <a href="#" onclick="alert('Comment')"><i class="fa fa-comment"></i> Comment</a>
+                        <a  onclick="alert('Comment')"><i class="fa fa-comment"></i> Comment</a>
                     </div>
-                    <div class="fb-btn-holder">
+                    <!-- <div class="fb-btn-holder">
                         <a href="#" onclick="alert('Share')"><i class="fa fa-share-square"></i> Share</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <div class="fb-card-comments">
                 <div class="comment-input-holder">
                     <div class="user-thumb">
-                        <img src="https://randomuser.me/api/portraits/women/85.jpg" class="img-responsive" />
+                        <img src="../assets/uploads/2.jpg" class="img-responsive" />
                     </div>
                     <div class="comment-input">
                         <div class="comment-box" placeholder="Write a comment..." contenteditable="true" placeholder="write a comment"></div>

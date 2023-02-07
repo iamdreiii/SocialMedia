@@ -38,3 +38,7 @@ class UserPostSerializer(ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'email', 'content', 'created_at', 'updated_at')
+class DeletePostSerializer(ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('id')

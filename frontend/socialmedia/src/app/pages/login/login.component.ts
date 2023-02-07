@@ -50,6 +50,7 @@ export class LoginComponent {
       error => {
         this.router.navigate(['/login']);
         Emitters.authEmitter.emit(false)
+        swal.fire('Failed','Failed to  Login!','error')
       }
       );
     }
